@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  go:
+    build: go
+    container_name: go
+    ports:
+      - 3001:3000
+  vertx:
+    build: vertx
+    container_name: vertx
+    ports:
+      - 3002:3000
+  node:
+    build: node
+    container_name: node
+    ports:
+      - 3003:3000
+  spring:
+    build: spring
+    container_name: spring
+    ports:
+      - 3004:3000
+  python:
+    build: python
+    container_name: python
+    ports:
+      - 3005:3000
