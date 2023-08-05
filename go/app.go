@@ -1,18 +1,18 @@
 package main
 
 import (
-	"bytes"
-	"io"
+
 	"math/rand"
 	"net/http"
 
-	"gopkg.in/gin-gonic/gin.v1"
+	"github.com/gin-gonic/gin"
+
+	_ "go.uber.org/automaxprocs"
 )
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
-
-	router.Use(customHeaders())
 
 	router.GET("/data", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
@@ -33,17 +33,6 @@ func main() {
 	})
 
 	router.Run(":3000")
-}
-
-func customHeaders() gin.HandlerFunc {
-	return customHeadersWithWriter(gin.DefaultWriter)
-}
-
-func customHeadersWithWriter(out io.Writer) gin.HandlerFunc {
-	return func(context *gin.Context) {
-		context.Header("Connection", "close")
-		context.Next()
-	}
 }
 
 type product struct {
@@ -76,16 +65,16 @@ func sampleData() []product {
 }
 
 func randomString(length int) string {
+	// fastest way possible to generate random string
 	alphabet := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-	var result bytes.Buffer
+	result := make([]byte, length)
 
 	alphabetLen := len(alphabet)
-	for i := 0; i < length; i++ {
-		random := rand.Intn(alphabetLen)
-		result.WriteByte(alphabet[random])
-	}
+	for i := range result {
+        result[i] = alphabet[rand.Intn(alphabetLen)]
+    }
 
-	return result.String()
+    return string(result)
 }
 
 func fibonacci(n int) int {

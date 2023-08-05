@@ -9,7 +9,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "express": "^4.15.2",
-    "threads_a_gogo": "^0.1.13"
+    "express": "^4.18.2",
+    "node-worker-threads-pool": "^1.5.1"
   }
 }

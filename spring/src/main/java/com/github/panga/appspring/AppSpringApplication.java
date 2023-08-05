@@ -24,27 +24,21 @@ public class AppSpringApplication {
 	public ResponseEntity<?> getData() {
 		final Map<String, List<Product>> response = new HashMap<>();
 		response.put("data", sampleData());
-		return new ResponseEntity<>(response, customHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/concat")
 	public ResponseEntity<?> getConcat() {
 		final Map<String, String> response = new HashMap<>();
 		response.put("concat", randomString(10000));
-		return new ResponseEntity<>(response, customHeaders(), HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@GetMapping("/fibonacci")
 	public ResponseEntity<?> getFibonacci() {
 		final Map<String, Long> response = new HashMap<>();
 		response.put("fibonacci", fibonacci(30));
-		return new ResponseEntity<>(response, customHeaders(), HttpStatus.OK);
-	}
-
-	private HttpHeaders customHeaders() {
-		final HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.set("Connection", "close");
-		return responseHeaders;
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	private List<Product> sampleData() {

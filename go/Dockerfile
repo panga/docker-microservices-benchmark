@@ -1,11 +1,17 @@
-FROM golang:1.8.1
+FROM golang:1.20-alpine AS builder
+
+WORKDIR /go/src/app
+
+ADD go.mod .
+ADD app.go .
+
+RUN go get .
+RUN go build
+
+FROM scratch
 
 EXPOSE 3000
 
-WORKDIR /go/src/app
-COPY app.go .
+COPY --from=builder /go/src/app/main /go/bin/main
 
-RUN go-wrapper download
-RUN go-wrapper install
-
-CMD ["app"]
+CMD ["/go/bin/main"]

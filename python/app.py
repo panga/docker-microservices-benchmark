@@ -27,11 +27,6 @@ def fibonacci(n):
 def random_string(len):
     return ''.join(random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') for _ in range(len))
 
-@app.after_request
-def custom_headers(response):
-    response.headers['Connection'] = 'Close'
-    return response
-
 @app.route('/data')
 def get_data():
     products = sample_data()

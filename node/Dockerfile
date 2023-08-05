@@ -1,14 +1,15 @@
-FROM node:6.10
+FROM node:20-alpine
 
 EXPOSE 3000
 
 WORKDIR /app
 
-ADD index.js .
 ADD package.json .
 
 RUN npm install
 
+ADD index.js .
 ADD app.js .
+ADD worker.js .
 
 CMD ["node", "index.js"]

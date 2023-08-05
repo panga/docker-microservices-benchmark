@@ -30,14 +30,13 @@ public class App extends AbstractVerticle {
 			});
 		});
 
-		vertx.createHttpServer().requestHandler(router::accept).listen(3000, r -> {
+		vertx.createHttpServer().requestHandler(router).listen(3000, r -> {
 			System.out.println(String.format("Listening on port %d", r.result().actualPort()));
 		});
 	}
 
 	private void customHeaders(final HttpServerResponse response) {
-		response.putHeader("Connection", "close")
-			.putHeader("Content-Type", "application/json; charset=utf-8")
+		response.putHeader("Content-Type", "application/json; charset=utf-8")
 			.putHeader("Date", new Date().toString());
 	}
 

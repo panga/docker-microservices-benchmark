@@ -1,10 +1,10 @@
-FROM python:2.7.13
+FROM python:3.11-alpine
 
 EXPOSE 3000
 
 WORKDIR /app
 
-COPY requirements.txt .
+ADD requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 ADD app.py .

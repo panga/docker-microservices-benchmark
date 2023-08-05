@@ -1,4 +1,11 @@
-const express = require('express')
+const express = require('express');
+const http = require('http');
+const { StaticPool } = require("node-worker-threads-pool");
+
+const pool = new StaticPool({
+  size: require('os').cpus().length,
+  task: "./worker.js"
+});
 
 function sampleData() {
   var data = [];
@@ -39,23 +46,9 @@ function randomString(len) {
   return result;
 };
 
-function fibonacci(n) {
-  if (n < 2) return n;
-  return fibonacci(n - 2) + fibonacci(n - 1);
-};
-
-function customHeaders(req, res, next) {
-  res.setHeader('Connection', 'Close');
-  next()
-}
-
 function start(port, callback) {
   const app = express();
 
-  var numThreads = require('os').cpus().length;
-  var pool = require('threads_a_gogo').createPool(numThreads).all.eval(fibonacci);
-
-  app.use(customHeaders);
   app.set('etag', false);
   app.set('x-powered-by', false);
 
@@ -72,14 +65,18 @@ function start(port, callback) {
   });
 
   app.get('/fibonacci', function(req, res) {
-    pool.any.eval('fibonacci(30)', (err, result) => {
+    pool.exec({n: 30}).then(result => {
       res.send({
-        fibonacci: result
+        fibonacci: result.fibonacci
       });
     });
   });
 
-  app.listen(port, callback)
+  const server = http.createServer({
+    keepAlive: true,
+    keepAliveTimeout: 60000
+  }, app);
+  server.listen(port, callback);
 }
 
 module.exports = {
