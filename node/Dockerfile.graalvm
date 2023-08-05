@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM ghcr.io/graalvm/nodejs-community:23-jvm20
 
 EXPOSE 3000
 
@@ -11,4 +11,4 @@ RUN npm install
 ADD index.js .
 ADD worker.js .
 
-CMD ["node", "index.js"]
+CMD ["node", "--jvm", "index.js"]

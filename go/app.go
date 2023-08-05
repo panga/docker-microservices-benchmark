@@ -1,61 +1,65 @@
 package main
 
 import (
-
 	"math/rand"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 
 	_ "go.uber.org/automaxprocs"
 )
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+	router := echo.New()
 
-	router.GET("/data", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{
-			"data": sampleData(),
-		})
+	router.GET("/data", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, &DataResponse{Data: sampleData()})
 	})
 
-	router.GET("/concat", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{
-			"concat": randomString(10000),
-		})
+	router.GET("/concat", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, &ConcatResponse{Concat: randomString(10000)})
 	})
 
-	router.GET("/fibonacci", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{
-			"fibonacci": fibonacci(30),
-		})
+	router.GET("/fibonacci", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, &FibonacciResponse{Fibonacci: fibonacci(30)})
 	})
 
-	router.Run(":3000")
+	router.Logger.Fatal(router.Start(":3000"))
 }
 
-type product struct {
+type DataResponse struct {
+	Data     []Product  `json:"data"`
+}
+
+type ConcatResponse struct {
+	Concat     string  `json:"concat"`
+}
+
+type FibonacciResponse struct {
+	Fibonacci     int  `json:"fibonacci"`
+}
+
+type Product struct {
 	ID     string  `json:"id"`
 	Name   string  `json:"name"`
 	Price  float32 `json:"price"`
 	Weight int     `json:"weight"`
 }
 
-func sampleData() []product {
-	data := []product{}
+func sampleData() []Product {
+	data := []Product{}
 
-	data = append(data, product{
+	data = append(data, Product{
 		ID:     "prod3568",
 		Name:   "Egg Whisk",
 		Price:  3.99,
 		Weight: 150})
-	data = append(data, product{
+	data = append(data, Product{
 		ID:     "prod7340",
 		Name:   "Tea Cosy",
 		Price:  5.99,
 		Weight: 100})
-	data = append(data, product{
+	data = append(data, Product{
 		ID:     "prod8643",
 		Name:   "Spatula",
 		Price:  1,
@@ -65,7 +69,6 @@ func sampleData() []product {
 }
 
 func randomString(length int) string {
-	// fastest way possible to generate random string
 	alphabet := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 	result := make([]byte, length)
 

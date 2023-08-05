@@ -6,4 +6,4 @@ WORKDIR /app
 
 ADD target/app.jar .
 
-CMD ["java", "-XX:+UseZGC", "-XX:+UseStringDeduplication", "-jar", "app.jar"]
+CMD ["java", "-XX:+UseZGC", "-jar", "app.jar"]

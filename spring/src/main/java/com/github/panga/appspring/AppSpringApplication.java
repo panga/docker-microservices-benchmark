@@ -1,12 +1,10 @@
 package com.github.panga.appspring;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,27 +20,21 @@ public class AppSpringApplication {
 
 	@GetMapping("/data")
 	public ResponseEntity<?> getData() {
-		final Map<String, List<Product>> response = new HashMap<>();
-		response.put("data", sampleData());
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return new ResponseEntity<>(Map.of("data", sampleData()), HttpStatus.OK);
 	}
 
 	@GetMapping("/concat")
 	public ResponseEntity<?> getConcat() {
-		final Map<String, String> response = new HashMap<>();
-		response.put("concat", randomString(10000));
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return new ResponseEntity<>(Map.of("concat", randomString(10000)), HttpStatus.OK);
 	}
 
 	@GetMapping("/fibonacci")
 	public ResponseEntity<?> getFibonacci() {
-		final Map<String, Long> response = new HashMap<>();
-		response.put("fibonacci", fibonacci(30));
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return new ResponseEntity<>(Map.of("fibonacci", fibonacci(30)), HttpStatus.OK);
 	}
 
 	private List<Product> sampleData() {
-		final List<Product> data = new ArrayList<>();
+		final List<Product> data = new ArrayList<>(4);
 
 		data.add(new Product("prod3568", "Egg Whisk", 3.99f, 150));
 		data.add(new Product("prod7340", "Tea Cosy", 5.99f, 100));
@@ -53,7 +45,7 @@ public class AppSpringApplication {
 
 	private String randomString(final int len) {
 		final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-		final StringBuilder result = new StringBuilder();
+		final StringBuilder result = new StringBuilder(len + 1);
 
 		for (int i = 0; i < len; i++) {
 			final int rand = (int) Math.floor(Math.random() * (alphabet.length()));

@@ -4,6 +4,8 @@ services:
   go:
     build: go
     container_name: go
+    environment:
+      - GOGC=1000
     ports:
       - 3001:3000
   vertx:
@@ -21,8 +23,10 @@ services:
     container_name: spring
     ports:
       - 3004:3000
-  python:
-    build: python
-    container_name: python
+  node_graalvm:
+    build:
+      context: node
+      dockerfile: Dockerfile.graalvm
+    container_name: node_graalvm
     ports:
       - 3005:3000
