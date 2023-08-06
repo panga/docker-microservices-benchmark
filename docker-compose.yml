@@ -13,14 +13,16 @@ services:
     container_name: vertx
     ports:
       - 3002:3000
-  node:
-    build: node
-    container_name: node
-    ports:
-      - 3003:3000
   spring:
     build: spring
     container_name: spring
+    ports:
+      - 3003:3000
+  node_express:
+    build:
+      context: node
+      dockerfile: Dockerfile.express
+    container_name: node_express
     ports:
       - 3004:3000
   node_graalvm:
@@ -30,3 +32,17 @@ services:
     container_name: node_graalvm
     ports:
       - 3005:3000
+  node_bun:
+    build:
+      context: node
+      dockerfile: Dockerfile.bun
+    container_name: node_bun
+    ports:
+      - 3006:3000
+  node_fastify:
+    build:
+      context: node
+      dockerfile: Dockerfile.fastify
+    container_name: node_fastify
+    ports:
+      - 3007:3000

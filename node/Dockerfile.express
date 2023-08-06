@@ -8,7 +8,8 @@ ADD package.json .
 
 RUN npm install
 
-ADD index.js .
+ADD routes.js .
+ADD express.js .
 ADD worker.js .
 
-CMD ["node", "index.js"]
+CMD ["node", "--max-semi-space-size=64", "express.js"]

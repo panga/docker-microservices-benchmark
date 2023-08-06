@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/nodejs-community:23-jvm20
+FROM oven/bun:0.7
 
 EXPOSE 3000
 
@@ -6,10 +6,10 @@ WORKDIR /app
 
 ADD package.json .
 
-RUN npm install
+RUN bun install
 
 ADD routes.js .
 ADD express.js .
 ADD worker.js .
 
-CMD ["node", "--jvm", "express.js"]
+CMD ["bun", "express.js"]

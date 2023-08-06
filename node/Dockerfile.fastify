@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+EXPOSE 3000
+
+WORKDIR /app
+
+ADD package.json .
+
+RUN npm install
+
+ADD routes.js .
+ADD fastify.js .
+ADD worker.js .
+
+CMD ["node", "--max-semi-space-size=64", "fastify.js"]
