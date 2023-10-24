@@ -71,7 +71,7 @@ Memory GC configuration:
 | Latency max   | **27.4ms** | 44.3ms  | 38.9ms  | 538.7ms  | 55.2ms   | 33ms    | 24.5ms     | **23.6ms**  | 36.6ms  |
 | Total time    | 25.300s    | 24.638s | 28.216s | 60.330s  | 62.831s  | 37.919s | 24.486s    | **21.494s** | 22.791s |
 
-### Random string generation 
+### Random string generation
 
 ``hey -c 100 -n 10000 http://localhost:30xx/concat``
 
