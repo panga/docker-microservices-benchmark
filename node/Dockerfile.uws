@@ -1,0 +1,15 @@
+FROM node:18
+
+EXPOSE 3000
+
+WORKDIR /app
+
+ADD package.json .
+
+RUN npm install
+
+ADD routes.js .
+ADD uws.js .
+ADD worker.js .
+
+CMD ["node", "--max-semi-space-size=64", "uws.js"]

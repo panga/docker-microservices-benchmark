@@ -1,7 +1,6 @@
 import io.vertx.core.*;
 import io.vertx.core.json.*;
 import io.vertx.ext.web.*;
-import io.vertx.ext.web.handler.*;
 import java.util.*;
 
 public class App extends AbstractVerticle {
