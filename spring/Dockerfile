@@ -1,4 +1,4 @@
-FROM amazoncorretto:20-alpine
+FROM amazoncorretto:21-alpine
 
 EXPOSE 3000
 
