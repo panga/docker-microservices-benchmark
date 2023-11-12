@@ -64,40 +64,49 @@ Memory GC configuration:
 
 ``hey -c 100 -n 1000000 http://localhost:30xx/data``
 
-| Metric        | Go         | Vert.x  | Spring  | Node     | Graal JS | Bun JS  | Node + UWS | Go Fiber    | Helidon | Dotnet    |
-|---|---|---|---|---|---|---|---|---|---|---|
-| CPU usage     | 145%       | **80%** | 178%    | 118%     | 137%     | 111%    | 102%       | 113%        | 149%    | 207%      |
-| Memory usage  | 46 MB      | 865 MB  | 1080 MB | 184 MB   | 661 MB   | 120 MB  | 177 MB     | 45 MB       | 179 MB  | **41 MB** |
-| Requests/s    | 41787      | 40586   | 35440   | 16575    | 15915    | 22627   | 23157      | **46524**   | 43876   | 37482     |
-| Latency avg   | 2.4ms      | 2.5ms   | 2.8ms   | 6ms      | 6.2ms    | 4.4ms   | 4.3ms      | **2.1ms**   | 2.3ms   | 2.7ms     |
-| Latency p99   | 4.6ms      | 5.1ms   | 7.3ms   | 15.7ms   | 16.5ms   | 11ms    | 10.8ms     | **4ms**     | 4.4ms   | 5.6ms     |
-| Latency max   | 38ms       | 44.3ms  | 38.9ms  | 538.7ms  | 55.2ms   | 75ms    | 47.2ms     | **23.6ms**  | 36.6ms  | 35.8ms    |
-| Total time    | 25.300s    | 24.638s | 28.216s | 60.330s  | 62.831s  | 44.193s | 43.183s    | **21.494s** | 22.791s | 26.679s   |
+| Metric        | Requests/s | CPU usage | Memory usage | Latency avg | Latency p99 | Latency max | Total time |
+|---------------|------------|-----------|--------------|-------------|-------------|-------------|------------|
+| Go Fiber      | 46524      | 113%      | 45 MB        | 2.1ms       | 4ms         | 23.6ms      | 21.494s    |
+| Helidon       | 43876      | 149%      | 179 MB       | 2.3ms       | 4.4ms       | 36.6ms      | 22.791s    |
+| Go            | 41787      | 145%      | 46 MB        | 2.4ms       | 4.6ms       | 38ms        | 25.300s    |
+| Vert.x        | 40586      | 80%       | 865 MB       | 2.5ms       | 5.1ms       | 44.3ms      | 24.638s    |
+| Dotnet        | 37482      | 207%      | 41 MB        | 2.7ms       | 5.6ms       | 35.8ms      | 26.679s    |
+| Spring        | 35440      | 178%      | 1080 MB      | 2.8ms       | 7.3ms       | 38.9ms      | 28.216s    |
+| Node + UWS    | 23157      | 102%      | 177 MB       | 4.3ms       | 10.8ms      | 47.2ms      | 43.183s    |
+| Bun JS        | 22627      | 111%      | 120 MB       | 4.4ms       | 11ms        | 75ms        | 44.193s    |
+| Node          | 16575      | 118%      | 184 MB       | 6ms         | 15.7ms      | 538.7ms     | 60.330s    |
+| Graal JS      | 15915      | 137%      | 661 MB       | 6.2ms       | 16.5ms      | 55.2ms      | 62.831s    |
 
 ### Random string generation
 
 ``hey -c 100 -n 10000 http://localhost:30xx/concat``
 
-| Metric        | Go      | Vert.x   | Spring  | Node     | Graal JS | Bun JS | Node + UWS | Go Fiber   | Helidon | Dotnet    |
-|---|---|---|---|---|---|---|---|---|---|---|
-| CPU usage     | 308%    | **105%** | 390%    | 115%     | 110%     | 110%   | 107%       | 300%       | 400%    | 130%      |
-| Memory usage  | 44 MB   | 600 MB   | 602 MB  | 175 MB   | 780 MB   | 85 MB  | 175 MB     | 44 MB      | 126 MB  | **43 MB** |
-| Requests/s    | 20689   | 4121     | 1018    | 3930     | 2327     | 6897   | 4748       | **21808**  | 566     | 19311     |
-| Latency avg   | 4.8ms   | 23.6ms   | 96.2ms  | 23.8ms   | 42.2ms   | 14.1ms | 20.7ms     | **4.5ms**  | 174.6ms | 5.1ms     |
-| Latency p99   | 13.1ms  | 47.1ms   | 255.4ms | 49.4ms   | 82.8ms   | 29.1ms | 41.1ms     | **12.6ms** | 203.4ms | 17.6ms    |
-| Latency max   | 46.6ms  | 60.2ms   | 375.9ms | 747.3ms  | 107ms    | 55.9ms | 72.4ms     | **37.1ms** | 481.4ms | 43.4ms    |
-| Total time    | 0.533s  | 2.426s   | 9.815s  | 2.544s   | 4.296s   | 1.449s | 2.106s     | **0.483s** | 17.664s | 0.517s    |
+| Metric        | Requests/s | CPU usage | Memory usage | Latency avg | Latency p99 | Latency max | Total time |
+|---------------|------------|-----------|--------------|-------------|-------------|-------------|------------|
+| Go Fiber      | 21808      | 300%      | 44 MB        | 4.5ms       | 12.6ms      | 37.1ms      | 0.483s     |
+| Go            | 20689      | 308%      | 44 MB        | 4.8ms       | 13.1ms      | 46.6ms      | 0.533s     |
+| Dotnet        | 19311      | 130%      | 43 MB        | 5.1ms       | 17.6ms      | 43.4ms      | 0.517s     |
+| Bun JS        | 6897       | 110%      | 85 MB        | 14.1ms      | 29.1ms      | 55.9ms      | 1.449s     |
+| Vert.x        | 4121       | 105%      | 600 MB       | 23.6ms      | 47.1ms      | 60.2ms      | 2.426s     |
+| Node          | 3930       | 115%      | 175 MB       | 23.8ms      | 49.4ms      | 747.3ms     | 2.544s     |
+| Node + UWS    | 4748       | 107%      | 175 MB       | 20.7ms      | 41.1ms      | 72.4ms      | 2.106s     |
+| Graal JS      | 2327       | 110%      | 780 MB       | 42.2ms      | 82.8ms      | 107ms       | 4.296s     |
+| Helidon       | 566        | 400%      | 126 MB       | 174.6ms     | 203.4ms     | 481.4ms     | 17.664s    |
+| Spring        | 1018       | 390%      | 602 MB       | 96.2ms      | 255.4ms     | 375.9ms     | 9.815s     |
 
 ### Fibonacci calculation
 
 ``hey -c 100 -n 10000 http://localhost:30xx/fibonacci``
 
-| Metric        | Go      | Vert.x  | Spring  | Node    | Graal JS | Bun JS  | Node + UWS | Go Fiber | Helidon    | Dotnet  |
-|---|---|---|---|---|---|---|---|---|---|---|
-| CPU usage     | 400%    | 388%    | 368%    | 390%    | **340%** | 400%    | 400%       | 400%     | 400%       | 400%    |
-| Memory usage  | 43 MB   | 238 MB  | 506 MB  | 73 MB   | 960 MB   | 123 MB  | 100 MB     | **5 MB** | 108 MB     | 33 MB   |
-| Requests/s    | 1176    | 1372    | 1364    | 606     | 408      | 1061    | 625        | 1174     | **1569**   | 1209    |
-| Latency avg   | 83.1ms  | 72.2ms  | 71ms    | 164.2ms | 243.5ms  | 93.7ms  | 159.1ms    | 83.5ms   | **63.3ms** | 82.2ms  |
-| Latency p99   | 138.2ms | 99.9ms  | 159.7ms | 174ms   | 264.8ms  | 98.9ms  | 171.7ms    | 134.9ms  | **67.7ms** | 129.8ms |
-| Latency max   | 333.9ms | 162.7ms | 241.2ms | 223.5ms | 305.7ms  | 147.1ms | 189.3ms    | 227ms    | **136ms**  | 159ms   |
-| Total time    | 8.502s  | 7.288s  | 7.3312s | 16.499s | 24.470s  | 9.42s   | 15.995s    | 8.517s   | **6.369s** | 8.265s  |
+| Metric        | Requests/s | CPU usage | Memory usage | Latency avg | Latency p99 | Latency max | Total time |
+|---------------|------------|-----------|--------------|-------------|-------------|-------------|------------|
+| Helidon       | 1569       | 400%      | 108 MB       | 63.3ms      | 67.7ms      | 136ms       | 6.369s     |
+| Go Fiber      | 1174       | 400%      | 5 MB         | 83.5ms      | 134.9ms     | 227ms       | 8.517s     |
+| Dotnet        | 1209       | 400%      | 33 MB        | 82.2ms      | 129.8ms     | 159ms       | 8.265s     |
+| Vert.x        | 1372       | 388%      | 238 MB       | 72.2ms      | 99.9ms      | 162.7ms     | 7.288s     |
+| Go            | 1176       | 400%      | 43 MB        | 83.1ms      | 138.2ms     | 333.9ms     | 8.502s     |
+| Bun JS        | 1061       | 400%      | 123 MB       | 93.7ms      | 98.9ms      | 147.1ms     | 9.42s      |
+| Spring        | 1364       | 368%      | 506 MB       | 71ms        | 159.7ms     | 241.2ms     | 7.3312s    |
+| Node + UWS    | 625        | 400%      | 100 MB       | 159.1ms     | 171.7ms     | 189.3ms     | 15.995s    |
+| Node          | 606        | 390%      | 73 MB        | 164.2ms     | 174ms       | 223.5ms     | 16.499s    |
+| Graal JS      | 408        | 340%      | 960 MB       | 243.5ms     | 264.8ms     | 305.7ms     | 24.470s    |
