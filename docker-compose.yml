@@ -74,3 +74,9 @@ services:
     container_name: helidon
     ports:
       - 3011:3000
+  dotnet:
+    build:
+      context: dotnet
+    container_name: dotnet
+    ports:
+      - 3012:3000
