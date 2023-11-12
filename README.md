@@ -87,12 +87,12 @@ Memory GC configuration:
 | Go            | 20689      | 308%      | 44 MB        | 4.8ms       | 13.1ms      | 46.6ms      | 0.533s     |
 | Dotnet        | 19311      | 130%      | 43 MB        | 5.1ms       | 17.6ms      | 43.4ms      | 0.517s     |
 | Bun JS        | 6897       | 110%      | 85 MB        | 14.1ms      | 29.1ms      | 55.9ms      | 1.449s     |
+| Node + UWS    | 4748       | 107%      | 175 MB       | 20.7ms      | 41.1ms      | 72.4ms      | 2.106s     |
 | Vert.x        | 4121       | 105%      | 600 MB       | 23.6ms      | 47.1ms      | 60.2ms      | 2.426s     |
 | Node          | 3930       | 115%      | 175 MB       | 23.8ms      | 49.4ms      | 747.3ms     | 2.544s     |
-| Node + UWS    | 4748       | 107%      | 175 MB       | 20.7ms      | 41.1ms      | 72.4ms      | 2.106s     |
 | Graal JS      | 2327       | 110%      | 780 MB       | 42.2ms      | 82.8ms      | 107ms       | 4.296s     |
-| Helidon       | 566        | 400%      | 126 MB       | 174.6ms     | 203.4ms     | 481.4ms     | 17.664s    |
 | Spring        | 1018       | 390%      | 602 MB       | 96.2ms      | 255.4ms     | 375.9ms     | 9.815s     |
+| Helidon       | 566        | 400%      | 126 MB       | 174.6ms     | 203.4ms     | 481.4ms     | 17.664s    |
 
 ### Fibonacci calculation
 
