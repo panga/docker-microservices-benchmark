@@ -80,3 +80,8 @@ services:
     container_name: dotnet
     ports:
       - 3012:3000
+  php_lumen:
+    build: php_lumen
+    container_name: php_lumen
+    ports:
+      - 3013:3000
