@@ -91,14 +91,14 @@ services:
     container_name: rust
     ports:
       - 3014:3000
-  swift:
-    build:
-      context: swift_vapor
-    container_name: swift
-    ports:
-      - 3015:3000
-  php:
-    build: php_lumen
-    container_name: php_lumen
-    ports:
-      - 3016:3000
+  # swift:
+  #   build:
+  #     context: swift_vapor
+  #   container_name: swift
+  #   ports:
+  #     - 3015:3000
+  # php:
+  #   build: php_lumen
+  #   container_name: php_lumen
+  #   ports:
+  #     - 3016:3000

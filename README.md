@@ -22,7 +22,7 @@ Copyright © 2024 - Leonardo Zanivan
 - bun 1.1.36 + express 4.18
 - dotnet core 9.0
 - python 3.13 + flask 3.1
-- rust 1.70 + tokio 1.14
+- rust 1.82 + tokio 1.14
 
 ### Performance Tweaks
 
@@ -44,12 +44,13 @@ Memory GC configuration:
 ### Application Size
 
 1. dotnet: 115 KB (app.dll)
-2. node express: 3.6 MB (app.js + node_modules)
-3. java helidon: 4.5 MB (app.jar + libs)
-4. go echo: 8.1 MB (app)
-5. java vertx: 8.3 MB (app.jar -> fat jar)
-6. python: 17 MB (app + pip)
-7. java spring: 20.0 MB (app.jar -> fat jar)
+2. rust: 3.1 MB (app)
+3. node express: 3.6 MB (app.js + node_modules)
+4. java helidon: 4.5 MB (app.jar + libs)
+5. go echo: 8.1 MB (app)
+6. java vertx: 8.3 MB (app.jar -> fat jar)
+7. python: 17 MB (app + pip)
+8. java spring: 20.0 MB (app.jar -> fat jar)
 
 ## Benchmark Results (best of 3 executions)
 
