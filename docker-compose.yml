@@ -86,3 +86,9 @@ services:
     container_name: python
     ports:
       - 3013:3000
+  swift_vapor:
+    build:
+      context: swift_vapor
+    container_name: swift_vapor
+    ports:
+      - 3014:3000

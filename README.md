@@ -22,10 +22,10 @@ Copyright © 2024 - Leonardo Zanivan
 - bun 1.1.36 + express 4.18
 - dotnet core 9.0
 - python 3.13 + flask 3.1
+- swift 5.7 + vapor 4.0
 
 #### TODO
 - rust
-- swift
 - add redis test case
 
 ### Performance Tweaks
