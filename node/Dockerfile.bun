@@ -1,8 +1,11 @@
-FROM oven/bun:1.0.11
+FROM oven/bun:1.1.36
 
 EXPOSE 3000
 
 WORKDIR /app
+
+# required for uws dependency
+RUN apt-get update && apt-get install -y git
 
 ADD package.json .
 

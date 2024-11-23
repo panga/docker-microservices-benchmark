@@ -1,8 +1,11 @@
-FROM node:20-alpine
+FROM node:22
 
 EXPOSE 3000
 
 WORKDIR /app
+
+# required for uws dependency
+RUN apt-get update && apt-get install -y git
 
 ADD package.json .
 

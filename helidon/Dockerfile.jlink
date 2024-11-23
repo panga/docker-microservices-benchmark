@@ -1,6 +1,6 @@
 
 # 1st stage, build the app
-FROM maven:3-amazoncorretto-21 as build
+FROM maven:3-amazoncorretto-23 as build
 
 WORKDIR /helidon
 

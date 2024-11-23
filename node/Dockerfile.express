@@ -1,8 +1,11 @@
-FROM node:20-alpine
+FROM node:22
 
 EXPOSE 3000
 
 WORKDIR /app
+
+# required for uws dependency
+RUN apt-get update && apt-get install -y git
 
 ADD package.json .
 
@@ -11,5 +14,19 @@ RUN npm install
 ADD routes.js .
 ADD express.js .
 ADD worker.js .
+
+# memory allocation tests
+
+#RUN apt-get update && apt-get install -y libjemalloc-dev
+#ENV LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libjemalloc.so
+
+#RUN apt-get update && apt-get install -y libtcmalloc-minimal4
+#ENV LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libtcmalloc_minimal.so.4
+
+#RUN apt-get update && apt-get install -y libmimalloc-dev
+#ENV LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libmimalloc.so
+
+#ENV MALLOC_ARENA_MAX=2
+#ENV MALLOC_TRIM_THRESHOLD_=131000
 
 CMD ["node", "--max-semi-space-size=64", "express.js"]
