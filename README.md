@@ -22,9 +22,9 @@ Copyright © 2024 - Leonardo Zanivan
 - bun 1.1.36 + express 4.18
 - dotnet core 9.0
 - python 3.13 + flask 3.1
+- rust 1.70 + tokio 1.14
 
 #### TODO
-- rust
 - swift
 - add redis test case
 

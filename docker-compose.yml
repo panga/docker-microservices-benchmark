@@ -86,3 +86,8 @@ services:
     container_name: python
     ports:
       - 3013:3000
+  rust:
+    build: rust
+    container_name: rust
+    ports:
+      - 3014:3000

@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/go,java,node,maven
 
 ### Go ###
@@ -125,3 +124,7 @@ hey
 bin/
 obj/
 out/
+
+### Rust ###
+target/
+Cargo.lock
