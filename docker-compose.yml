@@ -25,13 +25,13 @@ services:
     container_name: node_express
     ports:
       - 3004:3000
-  node_graalvm:
-    build:
-      context: node
-      dockerfile: Dockerfile.graalvm
-    container_name: node_graalvm
-    ports:
-      - 3005:3000
+  # node_graalvm:
+  #   build:
+  #     context: node
+  #     dockerfile: Dockerfile.graalvm
+  #   container_name: node_graalvm
+  #   ports:
+  #     - 3005:3000
   node_bun:
     build:
       context: node
@@ -46,13 +46,13 @@ services:
     container_name: node_fastify
     ports:
       - 3007:3000
-  node_hyper:
-    build:
-      context: node
-      dockerfile: Dockerfile.hyper
-    container_name: node_hyper
-    ports:
-      - 3008:3000
+  # node_hyper:
+  #   build:
+  #     context: node
+  #     dockerfile: Dockerfile.hyper
+  #   container_name: node_hyper
+  #   ports:
+  #     - 3008:3000
   go_fiber:
     build: go_fiber
     container_name: go_fiber
@@ -60,17 +60,17 @@ services:
       - GOGC=1000
     ports:
       - 3009:3000
-  node_uws:
-    build:
-      context: node
-      dockerfile: Dockerfile.uws
-    container_name: node_uws
-    ports:
-      - 3010:3000
+  # node_uws:
+  #   build:
+  #     context: node
+  #     dockerfile: Dockerfile.uws
+  #   container_name: node_uws
+  #   ports:
+  #     - 3010:3000
   helidon:
     build:
       context: helidon
-      dockerfile: Dockerfile.jlink
+      dockerfile: Dockerfile
     container_name: helidon
     ports:
       - 3011:3000
@@ -80,8 +80,25 @@ services:
     container_name: dotnet
     ports:
       - 3012:3000
-  php_lumen:
+  python:
+    build:
+      context: python
+    container_name: python
+    ports:
+      - 3013:3000
+  rust:
+    build: rust
+    container_name: rust
+    ports:
+      - 3014:3000
+  swift:
+    build:
+      context: swift_vapor
+    container_name: swift
+    ports:
+      - 3015:3000
+  php:
     build: php_lumen
     container_name: php_lumen
     ports:
-      - 3013:3000
+      - 3016:3000

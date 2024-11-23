@@ -1,6 +1,8 @@
-FROM golang:1.21-alpine AS builder
+FROM golang:1.23 AS builder
 
 WORKDIR /go/src/app
+
+ENV CGO_ENABLED=0
 
 ADD go.mod .
 ADD app.go .
