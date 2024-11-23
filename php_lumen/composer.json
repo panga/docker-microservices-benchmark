@@ -1,0 +1,17 @@
+{
+    "name": "panga/docker-microservices-benchmark",
+    "description": "A benchmark for microservices using PHP 7.1 and Lumen",
+    "require": {
+        "php": "^7.1",
+        "laravel/lumen-framework": "^5.8",
+        "vlucas/phpdotenv": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:3000 -t public"
+    }
+}

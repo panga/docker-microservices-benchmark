@@ -97,3 +97,8 @@ services:
     container_name: swift
     ports:
       - 3015:3000
+  php:
+    build: php_lumen
+    container_name: php_lumen
+    ports:
+      - 3016:3000
