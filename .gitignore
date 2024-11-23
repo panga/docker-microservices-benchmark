@@ -128,3 +128,8 @@ out/
 ### Rust ###
 target/
 Cargo.lock
+
+### Swift ###
+# Build artifacts
+.build/
+Package.resolved

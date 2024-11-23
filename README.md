@@ -24,10 +24,6 @@ Copyright © 2024 - Leonardo Zanivan
 - python 3.13 + flask 3.1
 - rust 1.70 + tokio 1.14
 
-#### TODO
-- swift
-- add redis test case
-
 ### Performance Tweaks
 
 All applications use optimized implementations for each language & framework.
